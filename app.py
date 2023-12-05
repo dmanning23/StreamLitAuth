@@ -26,7 +26,8 @@ def main():
         st.write(f'Welcome {st.session_state["name"]}')
         
         #Get the user ID... here it is just the index of the user
-        userId = list(config['credentials']['usernames'].keys()).index(st.session_state['username'])
+        if "username" in st.session_state and st.session_state['username'] is not None:
+            userId = list(config['credentials']['usernames'].keys()).index(st.session_state['username'])
 
         st.title('Some content')
 
