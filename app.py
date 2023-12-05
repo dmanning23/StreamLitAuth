@@ -88,10 +88,13 @@ def main():
                 #popup the register user widget
                 if authenticator.register_user('Register user', location="sidebar", preauthorization=False):
                     st.success('User registered successfully')
-                    changeLoginStatus("login")
+                    st.session_state["login_status"] = "login"
+    
                     #write out the user configuration
                     with open('./config.yaml', 'w') as file:
                         yaml.dump(config, file, default_flow_style=False)
+
+                    st.rerun()
             except Exception as e:
                 st.error(e)
 
